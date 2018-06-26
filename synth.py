@@ -9,15 +9,18 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 
 # tasks has two product names, and a poorly named artman yaml
+version = 'v1'
+
 library = gapic.node_library(
-    'bigquerydatatransfer', 'v1',
-    config_path='/google/cloud/bigquery/datatransfer/artman_bigquerydatatransfer.yaml')
+    'bigquerydatatransfer', version,
+    config_path="/google/cloud/bigquery/datatransfer/"
+                "artman_bigquerydatatransfer.yaml")
 
 # skip index, protos, package.json, and README.md
 s.copy(
     library,
     excludes=['package.json', 'README.md', 'src/index.js',
-              'src/v1beta1/index.js'])
+              f'src/{version}/index.js'])
 #
 # Node.js specific cleanup
 #
