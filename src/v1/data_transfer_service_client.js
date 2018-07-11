@@ -106,7 +106,9 @@ class DataTransferServiceClient {
       projectDataSourcePathTemplate: new gax.PathTemplate(
         'projects/{project}/dataSources/{data_source}'
       ),
-      projectPathTemplate: new gax.PathTemplate('projects/{project}'),
+      projectPathTemplate: new gax.PathTemplate(
+        'projects/{project}'
+      ),
       projectTransferConfigPathTemplate: new gax.PathTemplate(
         'projects/{project}/transferConfigs/{transfer_config}'
       ),
@@ -212,7 +214,9 @@ class DataTransferServiceClient {
    * in this service.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform',
+    ];
   }
 
   /**
@@ -426,7 +430,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates a new data transfer configuration.
@@ -818,7 +822,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates transfer runs for a time range [start_time, end_time].
@@ -1140,7 +1144,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Returns user facing log messages for the data transfer run.
@@ -1301,7 +1305,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Returns true if valid credentials exist for the given data source and
@@ -1423,9 +1427,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectDataSourceName(projectDataSourceName) {
-    return this._pathTemplates.projectDataSourcePathTemplate.match(
-      projectDataSourceName
-    ).project;
+    return this._pathTemplates.projectDataSourcePathTemplate
+      .match(projectDataSourceName)
+      .project;
   }
 
   /**
@@ -1436,9 +1440,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the data_source.
    */
   matchDataSourceFromProjectDataSourceName(projectDataSourceName) {
-    return this._pathTemplates.projectDataSourcePathTemplate.match(
-      projectDataSourceName
-    ).data_source;
+    return this._pathTemplates.projectDataSourcePathTemplate
+      .match(projectDataSourceName)
+      .data_source;
   }
 
   /**
@@ -1449,7 +1453,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectName(projectName) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
+    return this._pathTemplates.projectPathTemplate
+      .match(projectName)
+      .project;
   }
 
   /**
@@ -1460,9 +1466,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectTransferConfigName(projectTransferConfigName) {
-    return this._pathTemplates.projectTransferConfigPathTemplate.match(
-      projectTransferConfigName
-    ).project;
+    return this._pathTemplates.projectTransferConfigPathTemplate
+      .match(projectTransferConfigName)
+      .project;
   }
 
   /**
@@ -1473,9 +1479,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the transfer_config.
    */
   matchTransferConfigFromProjectTransferConfigName(projectTransferConfigName) {
-    return this._pathTemplates.projectTransferConfigPathTemplate.match(
-      projectTransferConfigName
-    ).transfer_config;
+    return this._pathTemplates.projectTransferConfigPathTemplate
+      .match(projectTransferConfigName)
+      .transfer_config;
   }
 
   /**
@@ -1486,7 +1492,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectRunName(projectRunName) {
-    return this._pathTemplates.projectRunPathTemplate.match(projectRunName)
+    return this._pathTemplates.projectRunPathTemplate
+      .match(projectRunName)
       .project;
   }
 
@@ -1498,7 +1505,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the transfer_config.
    */
   matchTransferConfigFromProjectRunName(projectRunName) {
-    return this._pathTemplates.projectRunPathTemplate.match(projectRunName)
+    return this._pathTemplates.projectRunPathTemplate
+      .match(projectRunName)
       .transfer_config;
   }
 
@@ -1510,8 +1518,11 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the run.
    */
   matchRunFromProjectRunName(projectRunName) {
-    return this._pathTemplates.projectRunPathTemplate.match(projectRunName).run;
+    return this._pathTemplates.projectRunPathTemplate
+      .match(projectRunName)
+      .run;
   }
 }
+
 
 module.exports = DataTransferServiceClient;

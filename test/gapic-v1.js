@@ -31,10 +31,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      var formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       var request = {
         name: formattedName,
       };
@@ -87,10 +84,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      var formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       var request = {
         name: formattedName,
       };
@@ -134,11 +128,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listDataSources = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listDataSources = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.dataSources);
       };
@@ -346,18 +336,13 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var request = {
         name: formattedName,
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(
-        request
-      );
+      client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(request);
 
       client.deleteTransferConfig(request, err => {
         assert.ifError(err);
@@ -372,10 +357,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var request = {
         name: formattedName,
       };
@@ -403,10 +385,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var request = {
         name: formattedName,
       };
@@ -453,10 +432,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var request = {
         name: formattedName,
       };
@@ -500,11 +476,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listTransferConfigs = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listTransferConfigs = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.transferConfigs);
       };
@@ -552,10 +524,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var startTime = {};
       var endTime = {};
       var request = {
@@ -587,10 +556,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var startTime = {};
       var endTime = {};
       var request = {
@@ -623,11 +589,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      var formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       var request = {
         name: formattedName,
       };
@@ -666,11 +628,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      var formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       var request = {
         name: formattedName,
       };
@@ -699,11 +657,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      var formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       var request = {
         name: formattedName,
       };
@@ -724,11 +678,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      var formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       var request = {
         name: formattedName,
       };
@@ -756,10 +706,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var request = {
         parent: formattedParent,
       };
@@ -774,11 +721,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listTransferRuns = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listTransferRuns = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.transferRuns);
       };
@@ -797,10 +740,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      var formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       var request = {
         parent: formattedParent,
       };
@@ -829,11 +769,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedParent = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      var formattedParent = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       var request = {
         parent: formattedParent,
       };
@@ -848,11 +784,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listTransferLogs = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listTransferLogs = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.transferMessages);
       };
@@ -871,11 +803,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedParent = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      var formattedParent = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       var request = {
         parent: formattedParent,
       };
@@ -904,10 +832,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      var formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       var request = {
         name: formattedName,
       };
@@ -938,10 +863,7 @@ describe('DataTransferServiceClient', () => {
       });
 
       // Mock request
-      var formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      var formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       var request = {
         name: formattedName,
       };
@@ -961,6 +883,7 @@ describe('DataTransferServiceClient', () => {
       });
     });
   });
+
 });
 
 function mockSimpleGrpcMethod(expectedRequest, response, error) {
