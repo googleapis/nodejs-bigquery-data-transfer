@@ -2,7 +2,7 @@
 
 [npm history][1]
 
-[1]: https://www.npmjs.com/package/PACKAGE NAME?activeTab=versions
+[1]: https://www.npmjs.com/package/@google-cloud/bigquery-data-transfer?activeTab=versions
 
 ## v0.4.0
 
