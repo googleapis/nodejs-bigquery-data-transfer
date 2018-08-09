@@ -16,7 +16,7 @@
 
 describe('DataTransferServiceSmokeTest', () => {
   if (!process.env.GCLOUD_PROJECT) {
-    throw new Error('Usage: GCLOUD_PROJECT=<project_id> node #{$0}');
+    throw new Error("Usage: GCLOUD_PROJECT=<project_id> node #{$0}");
   }
   var projectId = process.env.GCLOUD_PROJECT;
 
@@ -30,8 +30,7 @@ describe('DataTransferServiceSmokeTest', () => {
     // Iterate over all elements.
     var formattedParent = client.projectPath(projectId);
 
-    client
-      .listDataSources({parent: formattedParent})
+    client.listDataSources({parent: formattedParent})
       .then(responses => {
         var resources = responses[0];
         for (let i = 0; i < resources.length; i += 1) {
@@ -52,6 +51,7 @@ describe('DataTransferServiceSmokeTest', () => {
     // Or obtain the paged response.
     var formattedParent = client.projectPath(projectId);
 
+
     var options = {autoPaginate: false};
     var callback = responses => {
       // The actual resources in a response.
@@ -67,9 +67,8 @@ describe('DataTransferServiceSmokeTest', () => {
         // Fetch the next page.
         return client.listDataSources(nextRequest, options).then(callback);
       }
-    };
-    client
-      .listDataSources({parent: formattedParent}, options)
+    }
+    client.listDataSources({parent: formattedParent}, options)
       .then(callback)
       .then(done)
       .catch(done);
@@ -83,8 +82,7 @@ describe('DataTransferServiceSmokeTest', () => {
     });
 
     var formattedParent = client.projectPath(projectId);
-    client
-      .listDataSourcesStream({parent: formattedParent})
+    client.listDataSourcesStream({parent: formattedParent})
       .on('data', element => {
         console.log(element);
       })
