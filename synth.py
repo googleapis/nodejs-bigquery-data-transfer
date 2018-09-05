@@ -20,12 +20,12 @@ s.copy(
     library,
     excludes=['package.json', 'README.md', 'src/index.js',
               f'src/{version}/index.js'])
-# Node.js specific cleanup
-subprocess.run(['npm', 'install'])
-subprocess.run(['npm', 'run', 'prettier'])
 
 # Copy over templated files
-logging.basicConfig(level=logging.DEBUG)
 common_templates = gcp.CommonTemplates()
 templates = common_templates.node_library()
 s.copy(templates)
+
+# Node.js specific cleanup
+subprocess.run(['npm', 'install'])
+subprocess.run(['npm', 'run', 'prettier'])
