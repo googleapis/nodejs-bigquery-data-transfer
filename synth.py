@@ -1,7 +1,6 @@
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
-from pathlib import Path
 import subprocess
 
 logging.basicConfig(level=logging.DEBUG)
@@ -24,4 +23,9 @@ s.copy(
 # Node.js specific cleanup
 subprocess.run(['npm', 'install'])
 subprocess.run(['npm', 'run', 'prettier'])
-subprocess.run(['npm', 'run', 'lint'])
+
+# Copy over templated files
+logging.basicConfig(level=logging.DEBUG)
+common_templates = gcp.CommonTemplates()
+templates = common_templates.node_library()
+s.copy(templates)
