@@ -13,7 +13,7 @@
 // limitations under the License.
 
 'use strict';
-
+async function main(){
 // [START bigquerydatatransfer_quickstart]
 
 if (
@@ -35,12 +35,10 @@ const projectId = process.env.GCLOUD_PROJECT;
 // Iterate over all elements.
 const formattedParent = client.locationPath(projectId, 'us-central1');
 
-client.listDataSources({parent: formattedParent}).then(responses => {
-  const resources = responses[0];
-  for (let i = 0; i < resources.length; i += 1) {
-    console.log(resources[i]);
-  }
-});
+const [resources] = await client.listDataSources({parent: formattedParent});
+for (let i = 0; i < resources.length; i += 1) {
+  console.log(resources[i]);
+}
 
 const options = {autoPaginate: false};
 const callback = async responses => {
@@ -56,13 +54,16 @@ const callback = async responses => {
   if (nextRequest) {
     // Fetch the next page.
     const response = await client.listDataSources(nextRequest, options);
-    return await callback(response);
+    return callback(response);
   }
 };
 const response = await client.listDataSources({parent: formattedParent}, options);
-await callback(response);
+callback(response);
 
 client.listDataSourcesStream({parent: formattedParent}).on('data', element => {
   console.log(element);
 });
 // [END bigquerydatatransfer_quickstart]
+}
+
+main().catch(console.error);
