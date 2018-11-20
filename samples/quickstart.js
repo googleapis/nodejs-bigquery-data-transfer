@@ -43,7 +43,7 @@ client.listDataSources({parent: formattedParent}).then(responses => {
 });
 
 const options = {autoPaginate: false};
-const callback = responses => {
+const callback = async responses => {
   // The actual resources in a response.
   const resources = responses[0];
   // The next request if the response shows that there are more responses.
@@ -55,10 +55,12 @@ const callback = responses => {
   }
   if (nextRequest) {
     // Fetch the next page.
-    return client.listDataSources(nextRequest, options).then(callback);
+    const response = await client.listDataSources(nextRequest, options);
+    return await callback(response);
   }
 };
-client.listDataSources({parent: formattedParent}, options).then(callback);
+const response = await client.listDataSources({parent: formattedParent}, options);
+await callback(response);
 
 client.listDataSourcesStream({parent: formattedParent}).on('data', element => {
   console.log(element);
