@@ -40,28 +40,21 @@ async function main() {
     console.log(resources[i]);
   }
 
+  let nextRequest = {parent: formattedParent};
   const options = {autoPaginate: false};
-  const callback = async responses => {
+  do {
+    // Fetch the next page.
+    const responses = await client.listDataSources(nextRequest, options);
     // The actual resources in a response.
     const resources = responses[0];
     // The next request if the response shows that there are more responses.
-    const nextRequest = responses[1];
+    nextRequest = responses[1];
     // The actual response object, if necessary.
     // const rawResponse = responses[2];
     for (let i = 0; i < resources.length; i += 1) {
       console.log(resources[i]);
     }
-    if (nextRequest) {
-      // Fetch the next page.
-      const response = await client.listDataSources(nextRequest, options);
-      return callback(response);
-    }
-  };
-  const response = await client.listDataSources(
-    {parent: formattedParent},
-    options
-  );
-  callback(response);
+  } while (nextRequest);
 
   client
     .listDataSourcesStream({parent: formattedParent})
