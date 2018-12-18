@@ -14,14 +14,12 @@
 
 'use strict';
 
-const assert = require('assert');
-const tools = require('@google-cloud/nodejs-repo-tools');
+const {assert} = require('chai');
+const execa = require('execa');
 
 describe('quickstart', () => {
-  tools.checkCredentials();
-
   it('should return a list of resources', async () => {
-    const output = await tools.runAsync('node quickstart.js');
-    assert.ok(output.match(/^Data sources/));
+    const {stdout} = await execa.shell('node quickstart');
+    assert.match(stdout, /^Data sources/);
   });
 });
