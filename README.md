@@ -1,117 +1,88 @@
+[//]: # "This README.md file is auto-generated, all changes to this file will be lost."
+[//]: # "To regenerate it, use `python -m synthtool`."
 <img src="https://avatars2.githubusercontent.com/u/2810941?v=3&s=96" alt="Google Cloud Platform logo" title="Google Cloud Platform" align="right" height="96" width="96"/>
 
-# [Google BigQuery Data Transfer Service: Node.js Client](https://github.com/googleapis/nodejs-bigquery-data-transfer)
+# [:  Client](https://github.com/)
 
-[![release level](https://img.shields.io/badge/release%20level-alpha-orange.svg?style&#x3D;flat)](https://cloud.google.com/terms/launch-stages)
+None
 [![npm version](https://img.shields.io/npm/v/@google-cloud/bigquery-data-transfer.svg)](https://www.npmjs.org/package/@google-cloud/bigquery-data-transfer)
-[![codecov](https://img.shields.io/codecov/c/github/googleapis/nodejs-bigquery-data-transfer/master.svg?style=flat)](https://codecov.io/gh/googleapis/nodejs-bigquery-data-transfer)
-
-> Node.js idiomatic client for [BigQuery Data Transfer Service][product-docs].
-
-The [BigQuery Data Transfer Service](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/) transfers data from partner SaaS applications to Google BigQuery on a scheduled, managed basis.
+[![codecov](https://img.shields.io/codecov/c/github//master.svg?style=flat)](https://codecov.io/gh/)
 
 
-* [BigQuery Data Transfer Service Node.js Client API Reference][client-docs]
-* [github.com/googleapis/nodejs-bigquery-data-transfer](https://github.com/googleapis/nodejs-bigquery-data-transfer)
-* [BigQuery Data Transfer Service Documentation][product-docs]
+BigQuery Data Transfer API client for Node.js
 
-Read more about the client libraries for Cloud APIs, including the older
-Google APIs Client Libraries, in [Client Libraries Explained][explained].
 
-[explained]: https://cloud.google.com/apis/docs/client-libraries-explained
-
-**Table of contents:**
-
-* [Quickstart](#quickstart)
-  * [Before you begin](#before-you-begin)
-  * [Installing the client library](#installing-the-client-library)
-  * [Using the client library](#using-the-client-library)
+* [Using the client library](#using-the-client-library)
 * [Versioning](#versioning)
 * [Contributing](#contributing)
 * [License](#license)
 
-## Quickstart
+## Using the client library
 
-### Before you begin
-
-1.  Select or create a Cloud Platform project.
-
-    [Go to the projects page][projects]
-
-1.  Enable billing for your project.
-
-    [Enable billing][billing]
-
-1.  Enable the Google BigQuery Data Transfer Service API.
-
-    [Enable the API][enable_api]
-
+1.  [Select or create a Cloud Platform project][projects].
+1.  [Enable the  API][enable_api].
 1.  [Set up authentication with a service account][auth] so you can access the
     API from your local workstation.
 
-[projects]: https://console.cloud.google.com/project
-[billing]: https://support.google.com/cloud/answer/6293499#enable-billing
-[enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=bigquerydatatransfer.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+1. Install the client library:
 
-### Installing the client library
+        npm install @google-cloud/bigquery-data-transfer
 
-    npm install --save @google-cloud/bigquery-data-transfer
 
-### Using the client library
+1. Try an example:
 
-```javascript
-const bigqueryDataTransfer = require('@google-cloud/bigquery-data-transfer');
+```
+async function quickstart() {
+  const bigqueryDataTransfer = require('@google-cloud/bigquery-data-transfer');
+  const client = new bigqueryDataTransfer.v1.DataTransferServiceClient();
+  const projectId = await client.getProjectId();
 
-const client = new bigqueryDataTransfer.v1.DataTransferServiceClient({
-  // optional auth parameters.
-});
-const projectId = await client.getProjectId();
-
-// Iterate over all elements.
-const formattedParent = client.locationPath(projectId, 'us-central1');
-
-client.listDataSources({parent: formattedParent}).then(responses => {
-  const resources = responses[0];
-  for (let i = 0; i < resources.length; i += 1) {
-    console.log(resources[i]);
-  }
-});
-
-const options = {autoPaginate: false};
-const callback = responses => {
-  // The actual resources in a response.
-  const resources = responses[0];
-  // The next request if the response shows that there are more responses.
-  const nextRequest = responses[1];
-  // The actual response object, if necessary.
-  // const rawResponse = responses[2];
-  for (let i = 0; i < resources.length; i += 1) {
-    console.log(resources[i]);
-  }
-  if (nextRequest) {
+  // Iterate over all elements.
+  const formattedParent = client.projectPath(projectId, 'us-central1');
+  let nextRequest = {parent: formattedParent};
+  const options = {autoPaginate: false};
+  console.log('Data sources:');
+  do {
     // Fetch the next page.
-    return client.listDataSources(nextRequest, options).then(callback);
-  }
-};
-client.listDataSources({parent: formattedParent}, options).then(callback);
+    const responses = await client.listDataSources(nextRequest, options);
+    // The actual resources in a response.
+    const resources = responses[0];
+    // The next request if the response shows that there are more responses.
+    nextRequest = responses[1];
+    // The actual response object, if necessary.
+    // const rawResponse = responses[2];
+    resources.forEach(resource => {
+      console.log(`  ${resource.name}`);
+    });
+  } while (nextRequest);
 
-client.listDataSourcesStream({parent: formattedParent}).on('data', element => {
-  console.log(element);
-});
+  console.log('\n\n');
+  console.log('Sources via stream:');
+
+  client
+    .listDataSourcesStream({parent: formattedParent})
+    .on('data', element => {
+      console.log(`  ${element.name}`);
+    });
+}
+quickstart().catch(console.error);
+
 ```
 
 
-The [BigQuery Data Transfer Service Node.js Client API Reference][client-docs] documentation
+
+
+The [  Client API Reference][client-docs] documentation
 also contains samples.
 
 ## Versioning
 
 This library follows [Semantic Versioning](http://semver.org/).
 
-This library is considered to be in **alpha**. This means it is still a
-work-in-progress and under active development. Any release is subject to
-backwards-incompatible changes at any time.
+
+
+
+
 
 More Information: [Google Cloud Platform Launch Stages][launch_stages]
 
@@ -119,15 +90,29 @@ More Information: [Google Cloud Platform Launch Stages][launch_stages]
 
 ## Contributing
 
-Contributions welcome! See the [Contributing Guide](https://github.com/googleapis/nodejs-bigquery-data-transfer/blob/master/CONTRIBUTING.md).
+Contributions welcome! See the [Contributing Guide](https://github.com//blob/master/CONTRIBUTING.md).
 
 ## License
 
 Apache Version 2.0
 
-See [LICENSE](https://github.com/googleapis/nodejs-bigquery-data-transfer/blob/master/LICENSE)
+See [LICENSE](https://github.com//blob/master/LICENSE)
 
-[client-docs]: https://cloud.google.com/nodejs/docs/reference/bigquery-data-transfer/latest/
-[product-docs]: https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/
-[shell_img]: //gstatic.com/cloudssh/images/open-btn.png
+## What's Next
 
+* [ Documentation][product-docs]
+* [  Client API Reference][client-docs]
+* [github.com/](https://github.com/)
+
+Read more about the client libraries for Cloud APIs, including the older
+Google APIs Client Libraries, in [Client Libraries Explained][explained].
+
+[explained]: https://cloud.google.com/apis/docs/client-libraries-explained
+
+[client-docs]: 
+[product-docs]: 
+[shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
+[projects]: https://console.cloud.google.com/project
+[billing]: https://support.google.com/cloud/answer/6293499#enable-billing
+[enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=
+[auth]: https://cloud.google.com/docs/authentication/getting-started
