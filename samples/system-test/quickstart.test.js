@@ -15,11 +15,11 @@
 'use strict';
 
 const {assert} = require('chai');
-const execa = require('execa');
+const {execSync} = require('child_process');
 
 describe('quickstart', () => {
   it('should return a list of resources', async () => {
-    const {stdout} = await execa.shell('node quickstart');
+    const stdout = execSync('node quickstart');
     assert.match(stdout, /^Data sources/);
   });
 });
