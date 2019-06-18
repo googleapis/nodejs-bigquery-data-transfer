@@ -178,8 +178,6 @@ class DataTransferServiceClient {
       'listTransferLogs',
       'checkValidCreds',
       'startManualTransferRuns',
-      'enableDataTransferService',
-      'isDataTransferServiceEnabled',
     ];
     for (const methodName of dataTransferServiceStubMethods) {
       this._innerApiCalls[methodName] = gax.createApiCall(
@@ -920,8 +918,6 @@ class DataTransferServiceClient {
    *   `"2017-05-30T00:00:00+00:00"`.
    *
    *   This object should have the same structure as [Timestamp]{@link google.protobuf.Timestamp}
-   * @param {Object.<string, string>} [request.labels]
-   *   User labels to add to the scheduled runs.
    * @param {Object} [options]
    *   Optional parameters. You can override the default settings for this call, e.g, timeout,
    *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
@@ -1489,8 +1485,6 @@ class DataTransferServiceClient {
    * @param {string} [request.parent]
    *   Transfer configuration name in the form:
    *   `projects/{project_id}/transferConfigs/{config_id}`.
-   * @param {Object.<string, string>} [request.labels]
-   *   User labels to add to the backfilled runs.
    * @param {Object} [request.requestedTimeRange]
    *   Time range for the transfer runs that should be started.
    *
@@ -1544,117 +1538,6 @@ class DataTransferServiceClient {
     });
 
     return this._innerApiCalls.startManualTransferRuns(
-      request,
-      options,
-      callback
-    );
-  }
-
-  /**
-   * Enables data transfer service for a given project. This
-   * method requires the additional scope of
-   * 'https://www.googleapis.com/auth/cloudplatformprojects'
-   * to manage the cloud project permissions.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} [request.name]
-   *   The name of the project resource in the form:
-   *   `projects/{project_id}`
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error)} [callback]
-   *   The function which will be called with the result of the API call.
-   * @returns {Promise} - The promise which resolves when API call finishes.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const bigqueryDataTransfer = require('@google-cloud/bigquery-data-transfer');
-   *
-   * const client = new bigqueryDataTransfer.v1.DataTransferServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   *
-   * client.enableDataTransferService({}).catch(err => {
-   *   console.error(err);
-   * });
-   */
-  enableDataTransferService(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
-
-    return this._innerApiCalls.enableDataTransferService(
-      request,
-      options,
-      callback
-    );
-  }
-
-  /**
-   * Returns true if data transfer is enabled for a project.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} [request.name]
-   *   The name of the project resource in the form:
-   *   `projects/{project_id}`
-   * @param {Object} [options]
-   *   Optional parameters. You can override the default settings for this call, e.g, timeout,
-   *   retries, paginations, etc. See [gax.CallOptions]{@link https://googleapis.github.io/gax-nodejs/interfaces/CallOptions.html} for the details.
-   * @param {function(?Error, ?Object)} [callback]
-   *   The function which will be called with the result of the API call.
-   *
-   *   The second parameter to the callback is an object representing [IsDataTransferServiceEnabledResponse]{@link google.cloud.bigquery.datatransfer.v1.IsDataTransferServiceEnabledResponse}.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [IsDataTransferServiceEnabledResponse]{@link google.cloud.bigquery.datatransfer.v1.IsDataTransferServiceEnabledResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   *
-   * @example
-   *
-   * const bigqueryDataTransfer = require('@google-cloud/bigquery-data-transfer');
-   *
-   * const client = new bigqueryDataTransfer.v1.DataTransferServiceClient({
-   *   // optional auth parameters.
-   * });
-   *
-   *
-   * client.isDataTransferServiceEnabled({})
-   *   .then(responses => {
-   *     const response = responses[0];
-   *     // doThingsWith(response)
-   *   })
-   *   .catch(err => {
-   *     console.error(err);
-   *   });
-   */
-  isDataTransferServiceEnabled(request, options, callback) {
-    if (options instanceof Function && callback === undefined) {
-      callback = options;
-      options = {};
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
-
-    return this._innerApiCalls.isDataTransferServiceEnabled(
       request,
       options,
       callback
