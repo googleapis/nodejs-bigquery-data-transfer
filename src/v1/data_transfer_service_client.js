@@ -72,7 +72,9 @@ class DataTransferServiceClient {
     const gaxModule = !global.isBrowser && opts.fallback ? gax.fallback : gax;
 
     const servicePath =
-      opts.servicePath || opts.apiEndpoint || this.constructor.servicePath;
+      opts.servicePath ||
+      opts.apiEndpoint ||
+      this.constructor.servicePath;
 
     // Ensure that options include the service address and port.
     opts = Object.assign(
@@ -113,15 +115,11 @@ class DataTransferServiceClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     const protos = gaxGrpc.loadProto(
-      opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
+      opts.fallback ?
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
@@ -140,7 +138,9 @@ class DataTransferServiceClient {
       locationTransferConfigPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/transferConfigs/{transfer_config}'
       ),
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
+      projectPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}'
+      ),
       projectDataSourcePathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/dataSources/{data_source}'
       ),
@@ -194,11 +194,9 @@ class DataTransferServiceClient {
     // Put together the "service stub" for
     // google.cloud.bigquery.datatransfer.v1.DataTransferService.
     const dataTransferServiceStub = gaxGrpc.createStub(
-      opts.fallback
-        ? protos.lookupService(
-            'google.cloud.bigquery.datatransfer.v1.DataTransferService'
-          )
-        : protos.google.cloud.bigquery.datatransfer.v1.DataTransferService,
+      opts.fallback ?
+        protos.lookupService('google.cloud.bigquery.datatransfer.v1.DataTransferService') :
+        protos.google.cloud.bigquery.datatransfer.v1.DataTransferService,
       opts
     );
 
@@ -264,7 +262,9 @@ class DataTransferServiceClient {
    * in this service.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform',
+    ];
   }
 
   /**
@@ -327,11 +327,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.getDataSource(request, options, callback);
   }
@@ -431,11 +430,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listDataSources(request, options, callback);
   }
@@ -494,7 +492,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates a new data transfer configuration.
@@ -577,11 +575,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createTransferConfig(request, options, callback);
   }
@@ -667,11 +664,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'transfer_config.name': request.transferConfig.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'transfer_config.name': request.transferConfig.name
+      });
 
     return this._innerApiCalls.updateTransferConfig(request, options, callback);
   }
@@ -715,11 +711,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.deleteTransferConfig(request, options, callback);
   }
@@ -770,11 +765,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.getTransferConfig(request, options, callback);
   }
@@ -875,11 +869,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listTransferConfigs(request, options, callback);
   }
@@ -940,7 +933,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Creates transfer runs for a time range [start_time, end_time].
@@ -1009,11 +1002,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.scheduleTransferRuns(request, options, callback);
   }
@@ -1064,11 +1056,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.getTransferRun(request, options, callback);
   }
@@ -1111,11 +1102,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.deleteTransferRun(request, options, callback);
   }
@@ -1223,11 +1213,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listTransferRuns(request, options, callback);
   }
@@ -1295,7 +1284,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Returns user facing log messages for the data transfer run.
@@ -1396,11 +1385,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listTransferLogs(request, options, callback);
   }
@@ -1464,7 +1452,7 @@ class DataTransferServiceClient {
       request,
       options
     );
-  }
+  };
 
   /**
    * Returns true if valid credentials exist for the given data source and
@@ -1517,11 +1505,10 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.checkValidCreds(request, options, callback);
   }
@@ -1584,17 +1571,12 @@ class DataTransferServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
-    return this._innerApiCalls.startManualTransferRuns(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.startManualTransferRuns(request, options, callback);
   }
 
   // --------------------
@@ -1729,7 +1711,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromLocationName(locationName) {
-    return this._pathTemplates.locationPathTemplate.match(locationName).project;
+    return this._pathTemplates.locationPathTemplate
+      .match(locationName)
+      .project;
   }
 
   /**
@@ -1740,7 +1724,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the location.
    */
   matchLocationFromLocationName(locationName) {
-    return this._pathTemplates.locationPathTemplate.match(locationName)
+    return this._pathTemplates.locationPathTemplate
+      .match(locationName)
       .location;
   }
 
@@ -1752,9 +1737,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromLocationDataSourceName(locationDataSourceName) {
-    return this._pathTemplates.locationDataSourcePathTemplate.match(
-      locationDataSourceName
-    ).project;
+    return this._pathTemplates.locationDataSourcePathTemplate
+      .match(locationDataSourceName)
+      .project;
   }
 
   /**
@@ -1765,9 +1750,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the location.
    */
   matchLocationFromLocationDataSourceName(locationDataSourceName) {
-    return this._pathTemplates.locationDataSourcePathTemplate.match(
-      locationDataSourceName
-    ).location;
+    return this._pathTemplates.locationDataSourcePathTemplate
+      .match(locationDataSourceName)
+      .location;
   }
 
   /**
@@ -1778,9 +1763,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the data_source.
    */
   matchDataSourceFromLocationDataSourceName(locationDataSourceName) {
-    return this._pathTemplates.locationDataSourcePathTemplate.match(
-      locationDataSourceName
-    ).data_source;
+    return this._pathTemplates.locationDataSourcePathTemplate
+      .match(locationDataSourceName)
+      .data_source;
   }
 
   /**
@@ -1791,7 +1776,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromLocationRunName(locationRunName) {
-    return this._pathTemplates.locationRunPathTemplate.match(locationRunName)
+    return this._pathTemplates.locationRunPathTemplate
+      .match(locationRunName)
       .project;
   }
 
@@ -1803,7 +1789,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the location.
    */
   matchLocationFromLocationRunName(locationRunName) {
-    return this._pathTemplates.locationRunPathTemplate.match(locationRunName)
+    return this._pathTemplates.locationRunPathTemplate
+      .match(locationRunName)
       .location;
   }
 
@@ -1815,7 +1802,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the transfer_config.
    */
   matchTransferConfigFromLocationRunName(locationRunName) {
-    return this._pathTemplates.locationRunPathTemplate.match(locationRunName)
+    return this._pathTemplates.locationRunPathTemplate
+      .match(locationRunName)
       .transfer_config;
   }
 
@@ -1827,7 +1815,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the run.
    */
   matchRunFromLocationRunName(locationRunName) {
-    return this._pathTemplates.locationRunPathTemplate.match(locationRunName)
+    return this._pathTemplates.locationRunPathTemplate
+      .match(locationRunName)
       .run;
   }
 
@@ -1839,9 +1828,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromLocationTransferConfigName(locationTransferConfigName) {
-    return this._pathTemplates.locationTransferConfigPathTemplate.match(
-      locationTransferConfigName
-    ).project;
+    return this._pathTemplates.locationTransferConfigPathTemplate
+      .match(locationTransferConfigName)
+      .project;
   }
 
   /**
@@ -1852,9 +1841,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the location.
    */
   matchLocationFromLocationTransferConfigName(locationTransferConfigName) {
-    return this._pathTemplates.locationTransferConfigPathTemplate.match(
-      locationTransferConfigName
-    ).location;
+    return this._pathTemplates.locationTransferConfigPathTemplate
+      .match(locationTransferConfigName)
+      .location;
   }
 
   /**
@@ -1864,12 +1853,10 @@ class DataTransferServiceClient {
    *   A fully-qualified path representing a location_transfer_config resources.
    * @returns {String} - A string representing the transfer_config.
    */
-  matchTransferConfigFromLocationTransferConfigName(
-    locationTransferConfigName
-  ) {
-    return this._pathTemplates.locationTransferConfigPathTemplate.match(
-      locationTransferConfigName
-    ).transfer_config;
+  matchTransferConfigFromLocationTransferConfigName(locationTransferConfigName) {
+    return this._pathTemplates.locationTransferConfigPathTemplate
+      .match(locationTransferConfigName)
+      .transfer_config;
   }
 
   /**
@@ -1880,7 +1867,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectName(projectName) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
+    return this._pathTemplates.projectPathTemplate
+      .match(projectName)
+      .project;
   }
 
   /**
@@ -1891,9 +1880,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectDataSourceName(projectDataSourceName) {
-    return this._pathTemplates.projectDataSourcePathTemplate.match(
-      projectDataSourceName
-    ).project;
+    return this._pathTemplates.projectDataSourcePathTemplate
+      .match(projectDataSourceName)
+      .project;
   }
 
   /**
@@ -1904,9 +1893,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the data_source.
    */
   matchDataSourceFromProjectDataSourceName(projectDataSourceName) {
-    return this._pathTemplates.projectDataSourcePathTemplate.match(
-      projectDataSourceName
-    ).data_source;
+    return this._pathTemplates.projectDataSourcePathTemplate
+      .match(projectDataSourceName)
+      .data_source;
   }
 
   /**
@@ -1917,7 +1906,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectRunName(projectRunName) {
-    return this._pathTemplates.projectRunPathTemplate.match(projectRunName)
+    return this._pathTemplates.projectRunPathTemplate
+      .match(projectRunName)
       .project;
   }
 
@@ -1929,7 +1919,8 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the transfer_config.
    */
   matchTransferConfigFromProjectRunName(projectRunName) {
-    return this._pathTemplates.projectRunPathTemplate.match(projectRunName)
+    return this._pathTemplates.projectRunPathTemplate
+      .match(projectRunName)
       .transfer_config;
   }
 
@@ -1941,7 +1932,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the run.
    */
   matchRunFromProjectRunName(projectRunName) {
-    return this._pathTemplates.projectRunPathTemplate.match(projectRunName).run;
+    return this._pathTemplates.projectRunPathTemplate
+      .match(projectRunName)
+      .run;
   }
 
   /**
@@ -1952,9 +1945,9 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromProjectTransferConfigName(projectTransferConfigName) {
-    return this._pathTemplates.projectTransferConfigPathTemplate.match(
-      projectTransferConfigName
-    ).project;
+    return this._pathTemplates.projectTransferConfigPathTemplate
+      .match(projectTransferConfigName)
+      .project;
   }
 
   /**
@@ -1965,10 +1958,11 @@ class DataTransferServiceClient {
    * @returns {String} - A string representing the transfer_config.
    */
   matchTransferConfigFromProjectTransferConfigName(projectTransferConfigName) {
-    return this._pathTemplates.projectTransferConfigPathTemplate.match(
-      projectTransferConfigName
-    ).transfer_config;
+    return this._pathTemplates.projectTransferConfigPathTemplate
+      .match(projectTransferConfigName)
+      .transfer_config;
   }
 }
+
 
 module.exports = DataTransferServiceClient;
