@@ -24,14 +24,12 @@ error.code = FAKE_STATUS_CODE;
 
 describe('DataTransferServiceClient', () => {
   it('has servicePath', () => {
-    const servicePath =
-      bigqueryDataTransferModule.v1.DataTransferServiceClient.servicePath;
+    const servicePath = bigqueryDataTransferModule.v1.DataTransferServiceClient.servicePath;
     assert(servicePath);
   });
 
   it('has apiEndpoint', () => {
-    const apiEndpoint =
-      bigqueryDataTransferModule.v1.DataTransferServiceClient.apiEndpoint;
+    const apiEndpoint = bigqueryDataTransferModule.v1.DataTransferServiceClient.apiEndpoint;
     assert(apiEndpoint);
   });
 
@@ -47,26 +45,19 @@ describe('DataTransferServiceClient', () => {
   });
 
   it('should create a client with gRPC fallback', () => {
-    const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
-      fallback: true,
-    });
+    const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({fallback: true});
     assert(client);
   });
 
   describe('getDataSource', () => {
     it('invokes getDataSource without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      const formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       const request = {
         name: formattedName,
       };
@@ -113,18 +104,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes getDataSource with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      const formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       const request = {
         name: formattedName,
       };
@@ -147,12 +133,10 @@ describe('DataTransferServiceClient', () => {
 
   describe('listDataSources', () => {
     it('invokes listDataSources without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const formattedParent = client.projectPath('[PROJECT]');
@@ -170,11 +154,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listDataSources = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listDataSources = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.dataSources);
       };
@@ -187,12 +167,10 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes listDataSources with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const formattedParent = client.projectPath('[PROJECT]');
@@ -218,12 +196,10 @@ describe('DataTransferServiceClient', () => {
 
   describe('createTransferConfig', () => {
     it('invokes createTransferConfig without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const formattedParent = client.projectPath('[PROJECT]');
@@ -269,12 +245,10 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes createTransferConfig with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const formattedParent = client.projectPath('[PROJECT]');
@@ -302,12 +276,10 @@ describe('DataTransferServiceClient', () => {
 
   describe('updateTransferConfig', () => {
     it('invokes updateTransferConfig without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const transferConfig = {};
@@ -353,12 +325,10 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes updateTransferConfig with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const transferConfig = {};
@@ -386,26 +356,19 @@ describe('DataTransferServiceClient', () => {
 
   describe('deleteTransferConfig', () => {
     it('invokes deleteTransferConfig without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const request = {
         name: formattedName,
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(
-        request
-      );
+      client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(request);
 
       client.deleteTransferConfig(request, err => {
         assert.ifError(err);
@@ -414,18 +377,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes deleteTransferConfig with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const request = {
         name: formattedName,
       };
@@ -447,18 +405,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('getTransferConfig', () => {
     it('invokes getTransferConfig without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const request = {
         name: formattedName,
       };
@@ -499,18 +452,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes getTransferConfig with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedName = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const request = {
         name: formattedName,
       };
@@ -533,12 +481,10 @@ describe('DataTransferServiceClient', () => {
 
   describe('listTransferConfigs', () => {
     it('invokes listTransferConfigs without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const formattedParent = client.projectPath('[PROJECT]');
@@ -556,11 +502,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listTransferConfigs = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listTransferConfigs = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.transferConfigs);
       };
@@ -573,12 +515,10 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes listTransferConfigs with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const formattedParent = client.projectPath('[PROJECT]');
@@ -604,18 +544,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('scheduleTransferRuns', () => {
     it('invokes scheduleTransferRuns without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const startTime = {};
       const endTime = {};
       const request = {
@@ -641,18 +576,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes scheduleTransferRuns with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const startTime = {};
       const endTime = {};
       const request = {
@@ -679,19 +609,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('getTransferRun', () => {
     it('invokes getTransferRun without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      const formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       const request = {
         name: formattedName,
       };
@@ -724,19 +648,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes getTransferRun with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      const formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       const request = {
         name: formattedName,
       };
@@ -759,19 +677,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('deleteTransferRun', () => {
     it('invokes deleteTransferRun without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      const formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       const request = {
         name: formattedName,
       };
@@ -786,19 +698,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes deleteTransferRun with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      const formattedName = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       const request = {
         name: formattedName,
       };
@@ -820,18 +726,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('listTransferRuns', () => {
     it('invokes listTransferRuns without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const request = {
         parent: formattedParent,
       };
@@ -846,11 +747,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listTransferRuns = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listTransferRuns = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.transferRuns);
       };
@@ -863,18 +760,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes listTransferRuns with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedParent = client.projectTransferConfigPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]'
-      );
+      const formattedParent = client.projectTransferConfigPath('[PROJECT]', '[TRANSFER_CONFIG]');
       const request = {
         parent: formattedParent,
       };
@@ -897,19 +789,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('listTransferLogs', () => {
     it('invokes listTransferLogs without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedParent = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      const formattedParent = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       const request = {
         parent: formattedParent,
       };
@@ -924,11 +810,7 @@ describe('DataTransferServiceClient', () => {
       };
 
       // Mock Grpc layer
-      client._innerApiCalls.listTransferLogs = (
-        actualRequest,
-        options,
-        callback
-      ) => {
+      client._innerApiCalls.listTransferLogs = (actualRequest, options, callback) => {
         assert.deepStrictEqual(actualRequest, request);
         callback(null, expectedResponse.transferMessages);
       };
@@ -941,19 +823,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes listTransferLogs with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedParent = client.projectRunPath(
-        '[PROJECT]',
-        '[TRANSFER_CONFIG]',
-        '[RUN]'
-      );
+      const formattedParent = client.projectRunPath('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
       const request = {
         parent: formattedParent,
       };
@@ -976,18 +852,13 @@ describe('DataTransferServiceClient', () => {
 
   describe('checkValidCreds', () => {
     it('invokes checkValidCreds without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      const formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       const request = {
         name: formattedName,
       };
@@ -1012,18 +883,13 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes checkValidCreds with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
-      const formattedName = client.projectDataSourcePath(
-        '[PROJECT]',
-        '[DATA_SOURCE]'
-      );
+      const formattedName = client.projectDataSourcePath('[PROJECT]', '[DATA_SOURCE]');
       const request = {
         name: formattedName,
       };
@@ -1046,12 +912,10 @@ describe('DataTransferServiceClient', () => {
 
   describe('startManualTransferRuns', () => {
     it('invokes startManualTransferRuns without error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const request = {};
@@ -1073,12 +937,10 @@ describe('DataTransferServiceClient', () => {
     });
 
     it('invokes startManualTransferRuns with error', done => {
-      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
+      const client = new bigqueryDataTransferModule.v1.DataTransferServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
 
       // Mock request
       const request = {};
@@ -1098,6 +960,7 @@ describe('DataTransferServiceClient', () => {
       });
     });
   });
+
 });
 
 function mockSimpleGrpcMethod(expectedRequest, response, error) {
