@@ -145,13 +145,6 @@ export class DataTransferServiceClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this._pathTemplates = {
-      projectDataSourcePathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/dataSources/{data_source}'
-      ),
-      projectLocationDataSourcePathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/locations/{location}/dataSources/{data_source}'
-      ),
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
       projectTransferConfigPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/transferConfigs/{transfer_config}'
       ),
@@ -164,6 +157,13 @@ export class DataTransferServiceClient {
       projectLocationTransferConfigRunPathTemplate: new gaxModule.PathTemplate(
         'projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}'
       ),
+      projectDataSourcePathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/dataSources/{data_source}'
+      ),
+      projectLocationDataSourcePathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/locations/{location}/dataSources/{data_source}'
+      ),
+      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
     };
 
     // Some of the methods on this service return "paged" results,
@@ -1809,134 +1809,6 @@ export class DataTransferServiceClient {
   // --------------------
 
   /**
-   * Return a fully-qualified projectDataSource resource name string.
-   *
-   * @param {string} project
-   * @param {string} data_source
-   * @returns {string} Resource name string.
-   */
-  projectDataSourcePath(project: string, dataSource: string) {
-    return this._pathTemplates.projectDataSourcePathTemplate.render({
-      project,
-      data_source: dataSource,
-    });
-  }
-
-  /**
-   * Parse the project from ProjectDataSource resource.
-   *
-   * @param {string} projectDataSourceName
-   *   A fully-qualified path representing project_data_source resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromProjectDataSourceName(projectDataSourceName: string) {
-    return this._pathTemplates.projectDataSourcePathTemplate.match(
-      projectDataSourceName
-    ).project;
-  }
-
-  /**
-   * Parse the data_source from ProjectDataSource resource.
-   *
-   * @param {string} projectDataSourceName
-   *   A fully-qualified path representing project_data_source resource.
-   * @returns {string} A string representing the data_source.
-   */
-  matchDataSourceFromProjectDataSourceName(projectDataSourceName: string) {
-    return this._pathTemplates.projectDataSourcePathTemplate.match(
-      projectDataSourceName
-    ).data_source;
-  }
-
-  /**
-   * Return a fully-qualified projectLocationDataSource resource name string.
-   *
-   * @param {string} project
-   * @param {string} location
-   * @param {string} data_source
-   * @returns {string} Resource name string.
-   */
-  projectLocationDataSourcePath(
-    project: string,
-    location: string,
-    dataSource: string
-  ) {
-    return this._pathTemplates.projectLocationDataSourcePathTemplate.render({
-      project,
-      location,
-      data_source: dataSource,
-    });
-  }
-
-  /**
-   * Parse the project from ProjectLocationDataSource resource.
-   *
-   * @param {string} projectLocationDataSourceName
-   *   A fully-qualified path representing project_location_data_source resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromProjectLocationDataSourceName(
-    projectLocationDataSourceName: string
-  ) {
-    return this._pathTemplates.projectLocationDataSourcePathTemplate.match(
-      projectLocationDataSourceName
-    ).project;
-  }
-
-  /**
-   * Parse the location from ProjectLocationDataSource resource.
-   *
-   * @param {string} projectLocationDataSourceName
-   *   A fully-qualified path representing project_location_data_source resource.
-   * @returns {string} A string representing the location.
-   */
-  matchLocationFromProjectLocationDataSourceName(
-    projectLocationDataSourceName: string
-  ) {
-    return this._pathTemplates.projectLocationDataSourcePathTemplate.match(
-      projectLocationDataSourceName
-    ).location;
-  }
-
-  /**
-   * Parse the data_source from ProjectLocationDataSource resource.
-   *
-   * @param {string} projectLocationDataSourceName
-   *   A fully-qualified path representing project_location_data_source resource.
-   * @returns {string} A string representing the data_source.
-   */
-  matchDataSourceFromProjectLocationDataSourceName(
-    projectLocationDataSourceName: string
-  ) {
-    return this._pathTemplates.projectLocationDataSourcePathTemplate.match(
-      projectLocationDataSourceName
-    ).data_source;
-  }
-
-  /**
-   * Return a fully-qualified project resource name string.
-   *
-   * @param {string} project
-   * @returns {string} Resource name string.
-   */
-  projectPath(project: string) {
-    return this._pathTemplates.projectPathTemplate.render({
-      project,
-    });
-  }
-
-  /**
-   * Parse the project from Project resource.
-   *
-   * @param {string} projectName
-   *   A fully-qualified path representing Project resource.
-   * @returns {string} A string representing the project.
-   */
-  matchProjectFromProjectName(projectName: string) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
-  }
-
-  /**
    * Return a fully-qualified projectTransferConfig resource name string.
    *
    * @param {string} project
@@ -2193,6 +2065,134 @@ export class DataTransferServiceClient {
     return this._pathTemplates.projectLocationTransferConfigRunPathTemplate.match(
       projectLocationTransferConfigRunName
     ).run;
+  }
+
+  /**
+   * Return a fully-qualified projectDataSource resource name string.
+   *
+   * @param {string} project
+   * @param {string} data_source
+   * @returns {string} Resource name string.
+   */
+  projectDataSourcePath(project: string, dataSource: string) {
+    return this._pathTemplates.projectDataSourcePathTemplate.render({
+      project,
+      data_source: dataSource,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectDataSource resource.
+   *
+   * @param {string} projectDataSourceName
+   *   A fully-qualified path representing project_data_source resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectDataSourceName(projectDataSourceName: string) {
+    return this._pathTemplates.projectDataSourcePathTemplate.match(
+      projectDataSourceName
+    ).project;
+  }
+
+  /**
+   * Parse the data_source from ProjectDataSource resource.
+   *
+   * @param {string} projectDataSourceName
+   *   A fully-qualified path representing project_data_source resource.
+   * @returns {string} A string representing the data_source.
+   */
+  matchDataSourceFromProjectDataSourceName(projectDataSourceName: string) {
+    return this._pathTemplates.projectDataSourcePathTemplate.match(
+      projectDataSourceName
+    ).data_source;
+  }
+
+  /**
+   * Return a fully-qualified projectLocationDataSource resource name string.
+   *
+   * @param {string} project
+   * @param {string} location
+   * @param {string} data_source
+   * @returns {string} Resource name string.
+   */
+  projectLocationDataSourcePath(
+    project: string,
+    location: string,
+    dataSource: string
+  ) {
+    return this._pathTemplates.projectLocationDataSourcePathTemplate.render({
+      project,
+      location,
+      data_source: dataSource,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectLocationDataSource resource.
+   *
+   * @param {string} projectLocationDataSourceName
+   *   A fully-qualified path representing project_location_data_source resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectLocationDataSourceName(
+    projectLocationDataSourceName: string
+  ) {
+    return this._pathTemplates.projectLocationDataSourcePathTemplate.match(
+      projectLocationDataSourceName
+    ).project;
+  }
+
+  /**
+   * Parse the location from ProjectLocationDataSource resource.
+   *
+   * @param {string} projectLocationDataSourceName
+   *   A fully-qualified path representing project_location_data_source resource.
+   * @returns {string} A string representing the location.
+   */
+  matchLocationFromProjectLocationDataSourceName(
+    projectLocationDataSourceName: string
+  ) {
+    return this._pathTemplates.projectLocationDataSourcePathTemplate.match(
+      projectLocationDataSourceName
+    ).location;
+  }
+
+  /**
+   * Parse the data_source from ProjectLocationDataSource resource.
+   *
+   * @param {string} projectLocationDataSourceName
+   *   A fully-qualified path representing project_location_data_source resource.
+   * @returns {string} A string representing the data_source.
+   */
+  matchDataSourceFromProjectLocationDataSourceName(
+    projectLocationDataSourceName: string
+  ) {
+    return this._pathTemplates.projectLocationDataSourcePathTemplate.match(
+      projectLocationDataSourceName
+    ).data_source;
+  }
+
+  /**
+   * Return a fully-qualified project resource name string.
+   *
+   * @param {string} project
+   * @returns {string} Resource name string.
+   */
+  projectPath(project: string) {
+    return this._pathTemplates.projectPathTemplate.render({
+      project,
+    });
+  }
+
+  /**
+   * Parse the project from Project resource.
+   *
+   * @param {string} projectName
+   *   A fully-qualified path representing Project resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectName(projectName: string) {
+    return this._pathTemplates.projectPathTemplate.match(projectName).project;
   }
 
   /**
