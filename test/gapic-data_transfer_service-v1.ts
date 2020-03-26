@@ -18,918 +18,791 @@
 
 import * as protosTypes from '../protos/protos';
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
+import { describe, it } from 'mocha';
+/* eslint-disable @typescript-eslint/no-var-requires */
 const datatransferserviceModule = require('../src');
 
+
 const FAKE_STATUS_CODE = 1;
-class FakeError {
-  name: string;
-  message: string;
-  code: number;
-  constructor(n: number) {
-    this.name = 'fakeName';
-    this.message = 'fake message';
-    this.code = n;
-  }
+class FakeError{
+    name: string;
+    message: string;
+    code: number;
+    constructor(n: number){
+        this.name = 'fakeName';
+        this.message = 'fake message';
+        this.code = n;
+    }
 }
 const error = new FakeError(FAKE_STATUS_CODE);
 export interface Callback {
-  (err: FakeError | null, response?: {} | null): void;
+  (err: FakeError|null, response?: {} | null): void;
 }
 
-export class Operation {
-  constructor() {}
-  promise() {}
+export class Operation{
+    constructor(){};
+    promise() {};
 }
-function mockSimpleGrpcMethod(
-  expectedRequest: {},
-  response: {} | null,
-  error: FakeError | null
-) {
-  return (actualRequest: {}, options: {}, callback: Callback) => {
-    assert.deepStrictEqual(actualRequest, expectedRequest);
-    if (error) {
-      callback(error);
-    } else if (response) {
-      callback(null, response);
-    } else {
-      callback(null);
-    }
-  };
+function mockSimpleGrpcMethod(expectedRequest: {}, response: {} | null, error: FakeError | null) {
+    return (actualRequest: {}, options: {}, callback: Callback) => {
+        assert.deepStrictEqual(actualRequest, expectedRequest);
+        if (error) {
+            callback(error);
+        } else if (response) {
+            callback(null, response);
+        } else {
+            callback(null);
+        }
+    };
 }
 describe('v1.DataTransferServiceClient', () => {
-  it('has servicePath', () => {
-    const servicePath =
-      datatransferserviceModule.v1.DataTransferServiceClient.servicePath;
-    assert(servicePath);
-  });
-  it('has apiEndpoint', () => {
-    const apiEndpoint =
-      datatransferserviceModule.v1.DataTransferServiceClient.apiEndpoint;
-    assert(apiEndpoint);
-  });
-  it('has port', () => {
-    const port = datatransferserviceModule.v1.DataTransferServiceClient.port;
-    assert(port);
-    assert(typeof port === 'number');
-  });
-  it('should create a client with no option', () => {
-    const client = new datatransferserviceModule.v1.DataTransferServiceClient();
-    assert(client);
-  });
-  it('should create a client with gRPC fallback', () => {
-    const client = new datatransferserviceModule.v1.DataTransferServiceClient({
-      fallback: true,
+    it('has servicePath', () => {
+        const servicePath = datatransferserviceModule.v1.DataTransferServiceClient.servicePath;
+        assert(servicePath);
     });
-    assert(client);
-  });
-  it('has initialize method and supports deferred initialization', async () => {
-    const client = new datatransferserviceModule.v1.DataTransferServiceClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has apiEndpoint', () => {
+        const apiEndpoint = datatransferserviceModule.v1.DataTransferServiceClient.apiEndpoint;
+        assert(apiEndpoint);
     });
-    assert.strictEqual(client.dataTransferServiceStub, undefined);
-    await client.initialize();
-    assert(client.dataTransferServiceStub);
-  });
-  it('has close method', () => {
-    const client = new datatransferserviceModule.v1.DataTransferServiceClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has port', () => {
+        const port = datatransferserviceModule.v1.DataTransferServiceClient.port;
+        assert(port);
+        assert(typeof port === 'number');
     });
-    client.close();
-  });
-  describe('getDataSource', () => {
-    it('invokes getDataSource without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetDataSourceRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getDataSource = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.getDataSource(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
+    it('should create a client with no option', () => {
+        const client = new datatransferserviceModule.v1.DataTransferServiceClient();
+        assert(client);
     });
-
-    it('invokes getDataSource with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetDataSourceRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getDataSource = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.getDataSource(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('createTransferConfig', () => {
-    it('invokes createTransferConfig without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICreateTransferConfigRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createTransferConfig = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.createTransferConfig(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes createTransferConfig with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICreateTransferConfigRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.createTransferConfig = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.createTransferConfig(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('updateTransferConfig', () => {
-    it('invokes updateTransferConfig without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IUpdateTransferConfigRequest = {};
-      request.transferConfig = {};
-      request.transferConfig.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateTransferConfig = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.updateTransferConfig(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes updateTransferConfig with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IUpdateTransferConfigRequest = {};
-      request.transferConfig = {};
-      request.transferConfig.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.updateTransferConfig = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.updateTransferConfig(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('deleteTransferConfig', () => {
-    it('invokes deleteTransferConfig without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferConfigRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.deleteTransferConfig(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes deleteTransferConfig with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferConfigRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.deleteTransferConfig(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('getTransferConfig', () => {
-    it('invokes getTransferConfig without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferConfigRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getTransferConfig = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.getTransferConfig(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes getTransferConfig with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferConfigRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getTransferConfig = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.getTransferConfig(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('scheduleTransferRuns', () => {
-    it('invokes scheduleTransferRuns without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IScheduleTransferRunsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.scheduleTransferRuns = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.scheduleTransferRuns(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes scheduleTransferRuns with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IScheduleTransferRunsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.scheduleTransferRuns = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.scheduleTransferRuns(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('startManualTransferRuns', () => {
-    it('invokes startManualTransferRuns without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IStartManualTransferRunsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.startManualTransferRuns = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.startManualTransferRuns(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes startManualTransferRuns with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IStartManualTransferRunsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.startManualTransferRuns = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.startManualTransferRuns(
-        request,
-        (err: FakeError, response: {}) => {
-          assert(err instanceof FakeError);
-          assert.strictEqual(err.code, FAKE_STATUS_CODE);
-          assert(typeof response === 'undefined');
-          done();
-        }
-      );
-    });
-  });
-  describe('getTransferRun', () => {
-    it('invokes getTransferRun without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferRunRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getTransferRun = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.getTransferRun(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes getTransferRun with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferRunRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.getTransferRun = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.getTransferRun(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('deleteTransferRun', () => {
-    it('invokes deleteTransferRun without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferRunRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteTransferRun = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.deleteTransferRun(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes deleteTransferRun with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferRunRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.deleteTransferRun = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.deleteTransferRun(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('checkValidCreds', () => {
-    it('invokes checkValidCreds without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICheckValidCredsRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.checkValidCreds = mockSimpleGrpcMethod(
-        request,
-        expectedResponse,
-        null
-      );
-      client.checkValidCreds(request, (err: {}, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-
-    it('invokes checkValidCreds with error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICheckValidCredsRequest = {};
-      request.name = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock gRPC layer
-      client._innerApiCalls.checkValidCreds = mockSimpleGrpcMethod(
-        request,
-        null,
-        error
-      );
-      client.checkValidCreds(request, (err: FakeError, response: {}) => {
-        assert(err instanceof FakeError);
-        assert.strictEqual(err.code, FAKE_STATUS_CODE);
-        assert(typeof response === 'undefined');
-        done();
-      });
-    });
-  });
-  describe('listDataSources', () => {
-    it('invokes listDataSources without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listDataSources = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listDataSources(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listDataSourcesStream', () => {
-    it('invokes listDataSourcesStream without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listDataSources = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listDataSourcesStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('should create a client with gRPC fallback', () => {
+        const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+            fallback: true,
         });
-      stream.write(expectedResponse);
+        assert(client);
     });
-  });
-  describe('listTransferConfigs', () => {
-    it('invokes listTransferConfigs without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listTransferConfigs = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listTransferConfigs(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listTransferConfigsStream', () => {
-    it('invokes listTransferConfigsStream without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listTransferConfigs = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listTransferConfigsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('has initialize method and supports deferred initialization', async () => {
+        const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
         });
-      stream.write(expectedResponse);
+        assert.strictEqual(client.dataTransferServiceStub, undefined);
+        await client.initialize();
+        assert(client.dataTransferServiceStub);
     });
-  });
-  describe('listTransferRuns', () => {
-    it('invokes listTransferRuns without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listTransferRuns = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listTransferRuns(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listTransferRunsStream', () => {
-    it('invokes listTransferRunsStream without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listTransferRuns = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listTransferRunsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('has close method', () => {
+        const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
         });
-      stream.write(expectedResponse);
+        client.close();
     });
-  });
-  describe('listTransferLogs', () => {
-    it('invokes listTransferLogs without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.listTransferLogs = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.listTransferLogs(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('listTransferLogsStream', () => {
-    it('invokes listTransferLogsStream without error', done => {
-      const client = new datatransferserviceModule.v1.DataTransferServiceClient(
-        {
-          credentials: {client_email: 'bogus', private_key: 'bogus'},
-          projectId: 'bogus',
-        }
-      );
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest = {};
-      request.parent = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.listTransferLogs = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .listTransferLogsStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    describe('getDataSource', () => {
+        it('invokes getDataSource without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetDataSourceRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.getDataSource = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.getDataSource(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
         });
-      stream.write(expectedResponse);
+
+        it('invokes getDataSource with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetDataSourceRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.getDataSource = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.getDataSource(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
     });
-  });
+    describe('createTransferConfig', () => {
+        it('invokes createTransferConfig without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICreateTransferConfigRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.createTransferConfig = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.createTransferConfig(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes createTransferConfig with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICreateTransferConfigRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.createTransferConfig = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.createTransferConfig(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('updateTransferConfig', () => {
+        it('invokes updateTransferConfig without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IUpdateTransferConfigRequest = {};
+            request.transferConfig = {};
+            request.transferConfig.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.updateTransferConfig = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.updateTransferConfig(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes updateTransferConfig with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IUpdateTransferConfigRequest = {};
+            request.transferConfig = {};
+            request.transferConfig.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.updateTransferConfig = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.updateTransferConfig(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('deleteTransferConfig', () => {
+        it('invokes deleteTransferConfig without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferConfigRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.deleteTransferConfig(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes deleteTransferConfig with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferConfigRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.deleteTransferConfig = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.deleteTransferConfig(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('getTransferConfig', () => {
+        it('invokes getTransferConfig without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferConfigRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.getTransferConfig = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.getTransferConfig(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes getTransferConfig with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferConfigRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.getTransferConfig = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.getTransferConfig(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('scheduleTransferRuns', () => {
+        it('invokes scheduleTransferRuns without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IScheduleTransferRunsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.scheduleTransferRuns = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.scheduleTransferRuns(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes scheduleTransferRuns with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IScheduleTransferRunsRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.scheduleTransferRuns = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.scheduleTransferRuns(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('startManualTransferRuns', () => {
+        it('invokes startManualTransferRuns without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IStartManualTransferRunsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.startManualTransferRuns = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.startManualTransferRuns(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes startManualTransferRuns with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IStartManualTransferRunsRequest = {};
+            request.parent = '';
+            // Mock gRPC layer
+            client._innerApiCalls.startManualTransferRuns = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.startManualTransferRuns(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('getTransferRun', () => {
+        it('invokes getTransferRun without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferRunRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.getTransferRun = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.getTransferRun(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes getTransferRun with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IGetTransferRunRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.getTransferRun = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.getTransferRun(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('deleteTransferRun', () => {
+        it('invokes deleteTransferRun without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferRunRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.deleteTransferRun = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.deleteTransferRun(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes deleteTransferRun with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IDeleteTransferRunRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.deleteTransferRun = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.deleteTransferRun(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('checkValidCreds', () => {
+        it('invokes checkValidCreds without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICheckValidCredsRequest = {};
+            request.name = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock gRPC layer
+            client._innerApiCalls.checkValidCreds = mockSimpleGrpcMethod(
+                request,
+                expectedResponse,
+                null
+            );
+            client.checkValidCreds(request, (err: {}, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            })
+        });
+
+        it('invokes checkValidCreds with error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.ICheckValidCredsRequest = {};
+            request.name = '';
+            // Mock gRPC layer
+            client._innerApiCalls.checkValidCreds = mockSimpleGrpcMethod(
+                request,
+                null,
+                error
+            );
+            client.checkValidCreds(request, (err: FakeError, response: {}) => {
+                assert(err instanceof FakeError);
+                assert.strictEqual(err.code, FAKE_STATUS_CODE);
+                assert(typeof response === 'undefined');
+                done();
+            })
+        });
+    });
+    describe('listDataSources', () => {
+        it('invokes listDataSources without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listDataSources = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listDataSources(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listDataSourcesStream', () => {
+        it('invokes listDataSourcesStream without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listDataSources = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listDataSourcesStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listTransferConfigs', () => {
+        it('invokes listTransferConfigs without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listTransferConfigs = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listTransferConfigs(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listTransferConfigsStream', () => {
+        it('invokes listTransferConfigsStream without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listTransferConfigs = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listTransferConfigsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listTransferRuns', () => {
+        it('invokes listTransferRuns without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listTransferRuns = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listTransferRuns(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listTransferRunsStream', () => {
+        it('invokes listTransferRunsStream without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listTransferRuns = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listTransferRunsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('listTransferLogs', () => {
+        it('invokes listTransferLogs without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.listTransferLogs = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.listTransferLogs(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('listTransferLogsStream', () => {
+        it('invokes listTransferLogsStream without error', done => {
+            const client = new datatransferserviceModule.v1.DataTransferServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest = {};
+            request.parent = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.listTransferLogs = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.listTransferLogsStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
 });
