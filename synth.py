@@ -31,7 +31,7 @@ s.copy(
 # Copy over templated files
 common_templates = gcp.CommonTemplates()
 templates = common_templates.node_library(
-    source_location='build/src')
+    source_location='build/src', versions=['v1'], default_version='v1')
 s.copy(templates)
 
 node.postprocess_gapic_library()
