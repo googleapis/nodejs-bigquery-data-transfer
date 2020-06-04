@@ -4,6 +4,15 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/bigquery-data-transfer?activeTab=versions
 
+### [2.0.1](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/compare/v2.0.0...v2.0.1) (2020-06-04)
+
+
+### Bug Fixes
+
+* regen protos and unit test ([#358](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/issues/358)) ([74010a6](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/commit/74010a6961c23d1d5d162df5ac151402749d01b6))
+* remove eslint, update gax, fix generated protos, run the generator ([#344](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/issues/344)) ([886c3da](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/commit/886c3da12770a16f762f348195939ca5a37ead38))
+* synth clean for src/index  ([#357](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/issues/357)) ([458ea3a](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/commit/458ea3a3e5adc964b5f695d8f68e3409a3f4d230))
+
 ## [2.0.0](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/compare/v1.5.3...v2.0.0) (2020-04-10)
 
 
