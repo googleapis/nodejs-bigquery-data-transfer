@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/nodejs-bigquery-data-transfer.git",
-        "sha": "9ddf4ffcfe16fd8441c0ee342810821196f4812c"
+        "sha": "c546f41bbd590aa6b2b2b2ea2322beccac4c3d19"
       }
     },
     {
