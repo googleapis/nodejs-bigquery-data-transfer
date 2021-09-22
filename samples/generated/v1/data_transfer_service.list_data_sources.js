@@ -12,48 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main() {
-  // [START datatransfer_start_manual_transfer_runs_sample]
+function main(parent) {
+  // [START datatransfer_list_data_sources_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Transfer configuration name in the form:
-   *  `projects/{project_id}/transferConfigs/{config_id}` or
-   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+   *  Required. The BigQuery project id for which data sources should be returned.
+   *  Must be in the form: `projects/{project_id}` or
+   *  `projects/{project_id}/locations/{location_id}
    */
   // const parent = 'abc123'
   /**
-   *  Time range for the transfer runs that should be started.
+   *  Pagination token, which can be used to request a specific page
+   *  of `ListDataSourcesRequest` list results. For multiple-page
+   *  results, `ListDataSourcesResponse` outputs
+   *  a `next_page` token, which can be used as the
+   *  `page_token` value to request the next page of list results.
    */
-  // const requestedTimeRange = ''
+  // const pageToken = 'abc123'
   /**
-   *  Specific run_time for a transfer run to be started. The
-   *  requested_run_time must not be in the future.
+   *  Page size. The default page size is the maximum value of 1000 results.
    */
-  // const requestedRunTime = ''
+  // const pageSize = 1234
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function startManualTransferRuns() {
+  async function listDataSources() {
     // Construct request
     const request = {
+      parent,
     };
 
     // Run request
-    const response = await datatransferClient.startManualTransferRuns(request);
-    console.log(response);
+    const iterable = await datatransferClient.listDataSourcesAsync(request);
+    for await (const response of iterable) {
+      console.log(response);
+    }
   }
 
-  startManualTransferRuns();
-  // [END datatransfer_start_manual_transfer_runs_sample]
+  listDataSources();
+  // [END datatransfer_list_data_sources_sample]
 }
 
 process.on('unhandledRejection', err => {

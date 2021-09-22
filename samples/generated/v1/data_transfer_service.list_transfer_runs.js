@@ -12,24 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(parent) {
-  // [START datatransfer_list_transfer_logs_sample]
+  // [START datatransfer_list_transfer_runs_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Transfer run name in the form:
-   *  `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+   *  Required. Name of transfer configuration for which transfer runs should be retrieved.
+   *  Format of transfer configuration resource name is:
+   *  `projects/{project_id}/transferConfigs/{config_id}` or
+   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
    */
   // const parent = 'abc123'
   /**
+   *  When specified, only transfer runs with requested states are returned.
+   */
+  // const states = 1234
+  /**
    *  Pagination token, which can be used to request a specific page
-   *  of `ListTransferLogsRequest` list results. For multiple-page
-   *  results, `ListTransferLogsResponse` outputs
+   *  of `ListTransferRunsRequest` list results. For multiple-page
+   *  results, `ListTransferRunsResponse` outputs
    *  a `next_page` token, which can be used as the
    *  `page_token` value to request the next page of list results.
    */
@@ -39,32 +43,32 @@ function main(parent) {
    */
   // const pageSize = 1234
   /**
-   *  Message types to return. If not populated - INFO, WARNING and ERROR
-   *  messages are returned.
+   *  Indicates how run attempts are to be pulled.
    */
-  // const messageTypes = 1234
+  // const runAttempt = ''
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function listTransferLogs() {
+  async function listTransferRuns() {
     // Construct request
     const request = {
       parent,
     };
 
     // Run request
-    const iterable = await datatransferClient.listTransferLogsAsync(request);
+    const iterable = await datatransferClient.listTransferRunsAsync(request);
     for await (const response of iterable) {
-        console.log(response);
+      console.log(response);
     }
   }
 
-  listTransferLogs();
-  // [END datatransfer_list_transfer_logs_sample]
+  listTransferRuns();
+  // [END datatransfer_list_transfer_runs_sample]
 }
 
 process.on('unhandledRejection', err => {

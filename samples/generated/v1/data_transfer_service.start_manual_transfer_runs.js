@@ -12,40 +12,47 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(name) {
-  // [START datatransfer_check_valid_creds_sample]
+function main() {
+  // [START datatransfer_start_manual_transfer_runs_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The data source in the form:
-   *  `projects/{project_id}/dataSources/{data_source_id}` or
-   *  `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+   *  Transfer configuration name in the form:
+   *  `projects/{project_id}/transferConfigs/{config_id}` or
+   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
    */
-  // const name = 'abc123'
+  // const parent = 'abc123'
+  /**
+   *  Time range for the transfer runs that should be started.
+   */
+  // const requestedTimeRange = ''
+  /**
+   *  Specific run_time for a transfer run to be started. The
+   *  requested_run_time must not be in the future.
+   */
+  // const requestedRunTime = ''
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function checkValidCreds() {
+  async function startManualTransferRuns() {
     // Construct request
-    const request = {
-      name,
-    };
+    const request = {};
 
     // Run request
-    const response = await datatransferClient.checkValidCreds(request);
+    const response = await datatransferClient.startManualTransferRuns(request);
     console.log(response);
   }
 
-  checkValidCreds();
-  // [END datatransfer_check_valid_creds_sample]
+  startManualTransferRuns();
+  // [END datatransfer_start_manual_transfer_runs_sample]
 }
 
 process.on('unhandledRejection', err => {

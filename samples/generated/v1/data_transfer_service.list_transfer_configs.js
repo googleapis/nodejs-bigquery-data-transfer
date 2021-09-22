@@ -12,29 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(parent) {
-  // [START datatransfer_list_transfer_runs_sample]
+  // [START datatransfer_list_transfer_configs_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Name of transfer configuration for which transfer runs should be retrieved.
-   *  Format of transfer configuration resource name is:
-   *  `projects/{project_id}/transferConfigs/{config_id}` or
-   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+   *  Required. The BigQuery project id for which data sources
+   *  should be returned: `projects/{project_id}` or
+   *  `projects/{project_id}/locations/{location_id}`
    */
   // const parent = 'abc123'
   /**
-   *  When specified, only transfer runs with requested states are returned.
+   *  When specified, only configurations of requested data sources are returned.
    */
-  // const states = 1234
+  // const dataSourceIds = 'abc123'
   /**
    *  Pagination token, which can be used to request a specific page
-   *  of `ListTransferRunsRequest` list results. For multiple-page
-   *  results, `ListTransferRunsResponse` outputs
+   *  of `ListTransfersRequest` list results. For multiple-page
+   *  results, `ListTransfersResponse` outputs
    *  a `next_page` token, which can be used as the
    *  `page_token` value to request the next page of list results.
    */
@@ -43,32 +41,29 @@ function main(parent) {
    *  Page size. The default page size is the maximum value of 1000 results.
    */
   // const pageSize = 1234
-  /**
-   *  Indicates how run attempts are to be pulled.
-   */
-  // const runAttempt = ''
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function listTransferRuns() {
+  async function listTransferConfigs() {
     // Construct request
     const request = {
       parent,
     };
 
     // Run request
-    const iterable = await datatransferClient.listTransferRunsAsync(request);
+    const iterable = await datatransferClient.listTransferConfigsAsync(request);
     for await (const response of iterable) {
-        console.log(response);
+      console.log(response);
     }
   }
 
-  listTransferRuns();
-  // [END datatransfer_list_transfer_runs_sample]
+  listTransferConfigs();
+  // [END datatransfer_list_transfer_configs_sample]
 }
 
 process.on('unhandledRejection', err => {

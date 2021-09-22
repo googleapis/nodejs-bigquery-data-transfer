@@ -418,6 +418,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.getDataSource(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.get_data_source.js</caption>
+   * region_tag:datatransfer_get_data_source_sample
+   *
    */
   getDataSource(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IGetDataSourceRequest,
@@ -549,6 +553,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.createTransferConfig(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.create_transfer_config.js</caption>
+   * region_tag:datatransfer_create_transfer_config_sample
+   *
    */
   createTransferConfig(
     request?: protos.google.cloud.bigquery.datatransfer.v1.ICreateTransferConfigRequest,
@@ -679,6 +687,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.updateTransferConfig(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.update_transfer_config.js</caption>
+   * region_tag:datatransfer_update_transfer_config_sample
+   *
    */
   updateTransferConfig(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IUpdateTransferConfigRequest,
@@ -779,6 +791,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.deleteTransferConfig(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.delete_transfer_config.js</caption>
+   * region_tag:datatransfer_delete_transfer_config_sample
+   *
    */
   deleteTransferConfig(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IDeleteTransferConfigRequest,
@@ -878,6 +894,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.getTransferConfig(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.get_transfer_config.js</caption>
+   * region_tag:datatransfer_get_transfer_config_sample
+   *
    */
   getTransferConfig(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IGetTransferConfigRequest,
@@ -987,6 +1007,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.scheduleTransferRuns(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.schedule_transfer_runs.js</caption>
+   * region_tag:datatransfer_schedule_transfer_runs_sample
+   *
    * @deprecated ScheduleTransferRuns is deprecated and may be removed in a future version.
    */
   scheduleTransferRuns(
@@ -1100,6 +1124,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.startManualTransferRuns(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.start_manual_transfer_runs.js</caption>
+   * region_tag:datatransfer_start_manual_transfer_runs_sample
+   *
    */
   startManualTransferRuns(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IStartManualTransferRunsRequest,
@@ -1203,6 +1231,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.getTransferRun(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.get_transfer_run.js</caption>
+   * region_tag:datatransfer_get_transfer_run_sample
+   *
    */
   getTransferRun(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IGetTransferRunRequest,
@@ -1302,6 +1334,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.deleteTransferRun(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.delete_transfer_run.js</caption>
+   * region_tag:datatransfer_delete_transfer_run_sample
+   *
    */
   deleteTransferRun(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IDeleteTransferRunRequest,
@@ -1406,6 +1442,10 @@ export class DataTransferServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.checkValidCreds(request);
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.check_valid_creds.js</caption>
+   * region_tag:datatransfer_check_valid_creds_sample
+   *
    */
   checkValidCreds(
     request?: protos.google.cloud.bigquery.datatransfer.v1.ICheckValidCredsRequest,
@@ -1515,6 +1555,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_data_sources.js</caption>
+   * region_tag:datatransfer_list_data_sources_sample
+   *
    */
   listDataSources(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest,
@@ -1587,6 +1631,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_data_sources.js</caption>
+   * region_tag:datatransfer_list_data_sources_sample
+   *
    */
   listDataSourcesStream(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest,
@@ -1600,7 +1648,8 @@ export class DataTransferServiceClient {
       gax.routingHeader.fromParams({
         parent: request.parent || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listDataSources'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listDataSources.createStream(
       this.innerApiCalls.listDataSources as gax.GaxCall,
@@ -1642,6 +1691,10 @@ export class DataTransferServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_data_sources.js</caption>
+   * region_tag:datatransfer_list_data_sources_sample
+   *
    */
   listDataSourcesAsync(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListDataSourcesRequest,
@@ -1656,7 +1709,8 @@ export class DataTransferServiceClient {
         parent: request.parent || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listDataSources'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listDataSources.asyncIterate(
       this.innerApiCalls['listDataSources'] as GaxCall,
@@ -1727,6 +1781,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_configs.js</caption>
+   * region_tag:datatransfer_list_transfer_configs_sample
+   *
    */
   listTransferConfigs(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest,
@@ -1801,6 +1859,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_configs.js</caption>
+   * region_tag:datatransfer_list_transfer_configs_sample
+   *
    */
   listTransferConfigsStream(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest,
@@ -1814,7 +1876,8 @@ export class DataTransferServiceClient {
       gax.routingHeader.fromParams({
         parent: request.parent || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listTransferConfigs'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listTransferConfigs.createStream(
       this.innerApiCalls.listTransferConfigs as gax.GaxCall,
@@ -1858,6 +1921,10 @@ export class DataTransferServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_configs.js</caption>
+   * region_tag:datatransfer_list_transfer_configs_sample
+   *
    */
   listTransferConfigsAsync(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferConfigsRequest,
@@ -1872,7 +1939,8 @@ export class DataTransferServiceClient {
         parent: request.parent || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listTransferConfigs'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listTransferConfigs.asyncIterate(
       this.innerApiCalls['listTransferConfigs'] as GaxCall,
@@ -1945,6 +2013,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_runs.js</caption>
+   * region_tag:datatransfer_list_transfer_runs_sample
+   *
    */
   listTransferRuns(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest,
@@ -2022,6 +2094,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_runs.js</caption>
+   * region_tag:datatransfer_list_transfer_runs_sample
+   *
    */
   listTransferRunsStream(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest,
@@ -2035,7 +2111,8 @@ export class DataTransferServiceClient {
       gax.routingHeader.fromParams({
         parent: request.parent || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listTransferRuns'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listTransferRuns.createStream(
       this.innerApiCalls.listTransferRuns as gax.GaxCall,
@@ -2082,6 +2159,10 @@ export class DataTransferServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_runs.js</caption>
+   * region_tag:datatransfer_list_transfer_runs_sample
+   *
    */
   listTransferRunsAsync(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferRunsRequest,
@@ -2096,7 +2177,8 @@ export class DataTransferServiceClient {
         parent: request.parent || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listTransferRuns'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listTransferRuns.asyncIterate(
       this.innerApiCalls['listTransferRuns'] as GaxCall,
@@ -2167,6 +2249,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_logs.js</caption>
+   * region_tag:datatransfer_list_transfer_logs_sample
+   *
    */
   listTransferLogs(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest,
@@ -2242,6 +2328,10 @@ export class DataTransferServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_logs.js</caption>
+   * region_tag:datatransfer_list_transfer_logs_sample
+   *
    */
   listTransferLogsStream(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest,
@@ -2255,7 +2345,8 @@ export class DataTransferServiceClient {
       gax.routingHeader.fromParams({
         parent: request.parent || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listTransferLogs'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listTransferLogs.createStream(
       this.innerApiCalls.listTransferLogs as gax.GaxCall,
@@ -2300,6 +2391,10 @@ export class DataTransferServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/data_transfer_service.list_transfer_logs.js</caption>
+   * region_tag:datatransfer_list_transfer_logs_sample
+   *
    */
   listTransferLogsAsync(
     request?: protos.google.cloud.bigquery.datatransfer.v1.IListTransferLogsRequest,
@@ -2314,7 +2409,8 @@ export class DataTransferServiceClient {
         parent: request.parent || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listTransferLogs'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listTransferLogs.asyncIterate(
       this.innerApiCalls['listTransferLogs'] as GaxCall,

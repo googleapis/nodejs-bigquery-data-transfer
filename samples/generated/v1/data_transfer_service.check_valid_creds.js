@@ -12,40 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(name) {
-  // [START datatransfer_get_transfer_run_sample]
+  // [START datatransfer_check_valid_creds_sample]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The field will contain name of the resource requested, for example:
-   *  `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
-   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+   *  Required. The data source in the form:
+   *  `projects/{project_id}/dataSources/{data_source_id}` or
+   *  `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
    */
   // const name = 'abc123'
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function getTransferRun() {
+  async function checkValidCreds() {
     // Construct request
     const request = {
       name,
     };
 
     // Run request
-    const response = await datatransferClient.getTransferRun(request);
+    const response = await datatransferClient.checkValidCreds(request);
     console.log(response);
   }
 
-  getTransferRun();
-  // [END datatransfer_get_transfer_run_sample]
+  checkValidCreds();
+  // [END datatransfer_check_valid_creds_sample]
 }
 
 process.on('unhandledRejection', err => {
