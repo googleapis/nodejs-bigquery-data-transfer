@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(name) {
-  // [START datatransfer_v1_generated_DataTransferService_DeleteTransferRun_async]
+  // [START datatransfer_v1_generated_DataTransferService_GetTransferRun_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
@@ -28,24 +27,25 @@ function main(name) {
   // const name = 'abc123'
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function deleteTransferRun() {
+  async function getTransferRun() {
     // Construct request
     const request = {
       name,
     };
 
     // Run request
-    const response = await datatransferClient.deleteTransferRun(request);
+    const response = await datatransferClient.getTransferRun(request);
     console.log(response);
   }
 
-  deleteTransferRun();
-  // [END datatransfer_v1_generated_DataTransferService_DeleteTransferRun_async]
+  getTransferRun();
+  // [END datatransfer_v1_generated_DataTransferService_GetTransferRun_async]
 }
 
 process.on('unhandledRejection', err => {

@@ -12,40 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(name) {
-  // [START datatransfer_v1_generated_DataTransferService_GetDataSource_async]
+  // [START datatransfer_v1_generated_DataTransferService_DeleteTransferConfig_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
    *  Required. The field will contain name of the resource requested, for example:
-   *  `projects/{project_id}/dataSources/{data_source_id}` or
-   *  `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+   *  `projects/{project_id}/transferConfigs/{config_id}` or
+   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
    */
   // const name = 'abc123'
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function getDataSource() {
+  async function deleteTransferConfig() {
     // Construct request
     const request = {
       name,
     };
 
     // Run request
-    const response = await datatransferClient.getDataSource(request);
+    const response = await datatransferClient.deleteTransferConfig(request);
     console.log(response);
   }
 
-  getDataSource();
-  // [END datatransfer_v1_generated_DataTransferService_GetDataSource_async]
+  deleteTransferConfig();
+  // [END datatransfer_v1_generated_DataTransferService_DeleteTransferConfig_async]
 }
 
 process.on('unhandledRejection', err => {
