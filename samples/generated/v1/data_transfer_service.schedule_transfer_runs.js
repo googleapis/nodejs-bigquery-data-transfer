@@ -12,40 +12,52 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(name) {
-  // [START bigquerydatatransfer_v1_generated_DataTransferService_GetTransferConfig_async]
+function main(parent, startTime, endTime) {
+  // [START bigquerydatatransfer_v1_generated_DataTransferService_ScheduleTransferRuns_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The field will contain name of the resource requested, for example:
+   *  Required. Transfer configuration name in the form:
    *  `projects/{project_id}/transferConfigs/{config_id}` or
-   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
    */
-  // const name = 'abc123'
+  // const parent = 'abc123'
+  /**
+   *  Required. Start time of the range of transfer runs. For example,
+   *  `"2017-05-25T00:00:00+00:00"`.
+   */
+  // const startTime = ''
+  /**
+   *  Required. End time of the range of transfer runs. For example,
+   *  `"2017-05-30T00:00:00+00:00"`.
+   */
+  // const endTime = ''
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function getTransferConfig() {
+  async function scheduleTransferRuns() {
     // Construct request
     const request = {
-      name,
+      parent,
+      startTime,
+      endTime,
     };
 
     // Run request
-    const response = await datatransferClient.getTransferConfig(request);
+    const response = await datatransferClient.scheduleTransferRuns(request);
     console.log(response);
   }
 
-  getTransferConfig();
-  // [END bigquerydatatransfer_v1_generated_DataTransferService_GetTransferConfig_async]
+  scheduleTransferRuns();
+  // [END bigquerydatatransfer_v1_generated_DataTransferService_ScheduleTransferRuns_async]
 }
 
 process.on('unhandledRejection', err => {

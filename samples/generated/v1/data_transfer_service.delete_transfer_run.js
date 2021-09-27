@@ -12,48 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main() {
-  // [START bigquerydatatransfer_v1_generated_DataTransferService_StartManualTransferRuns_async]
+function main(name) {
+  // [START bigquerydatatransfer_v1_generated_DataTransferService_DeleteTransferRun_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Transfer configuration name in the form:
-   *  `projects/{project_id}/transferConfigs/{config_id}` or
-   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+   *  Required. The field will contain name of the resource requested, for example:
+   *  `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
    */
-  // const parent = 'abc123'
-  /**
-   *  Time range for the transfer runs that should be started.
-   */
-  // const requestedTimeRange = ''
-  /**
-   *  Specific run_time for a transfer run to be started. The
-   *  requested_run_time must not be in the future.
-   */
-  // const requestedRunTime = ''
+  // const name = 'abc123'
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function startManualTransferRuns() {
+  async function deleteTransferRun() {
     // Construct request
     const request = {
+      name,
     };
 
     // Run request
-    const response = await datatransferClient.startManualTransferRuns(request);
+    const response = await datatransferClient.deleteTransferRun(request);
     console.log(response);
   }
 
-  startManualTransferRuns();
-  // [END bigquerydatatransfer_v1_generated_DataTransferService_StartManualTransferRuns_async]
+  deleteTransferRun();
+  // [END bigquerydatatransfer_v1_generated_DataTransferService_DeleteTransferRun_async]
 }
 
 process.on('unhandledRejection', err => {

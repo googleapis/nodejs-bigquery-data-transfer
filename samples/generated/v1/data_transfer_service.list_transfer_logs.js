@@ -12,28 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main(parent) {
-  // [START bigquerydatatransfer_v1_generated_DataTransferService_ListTransferConfigs_async]
+  // [START bigquerydatatransfer_v1_generated_DataTransferService_ListTransferLogs_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The BigQuery project id for which data sources
-   *  should be returned: `projects/{project_id}` or
-   *  `projects/{project_id}/locations/{location_id}`
+   *  Required. Transfer run name in the form:
+   *  `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or
+   *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
    */
   // const parent = 'abc123'
   /**
-   *  When specified, only configurations of requested data sources are returned.
-   */
-  // const dataSourceIds = 'abc123'
-  /**
    *  Pagination token, which can be used to request a specific page
-   *  of `ListTransfersRequest` list results. For multiple-page
-   *  results, `ListTransfersResponse` outputs
+   *  of `ListTransferLogsRequest` list results. For multiple-page
+   *  results, `ListTransferLogsResponse` outputs
    *  a `next_page` token, which can be used as the
    *  `page_token` value to request the next page of list results.
    */
@@ -42,28 +37,34 @@ function main(parent) {
    *  Page size. The default page size is the maximum value of 1000 results.
    */
   // const pageSize = 1234
+  /**
+   *  Message types to return. If not populated - INFO, WARNING and ERROR
+   *  messages are returned.
+   */
+  // const messageTypes = 1234
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function listTransferConfigs() {
+  async function listTransferLogs() {
     // Construct request
     const request = {
       parent,
     };
 
     // Run request
-    const iterable = await datatransferClient.listTransferConfigsAsync(request);
+    const iterable = await datatransferClient.listTransferLogsAsync(request);
     for await (const response of iterable) {
-        console.log(response);
+      console.log(response);
     }
   }
 
-  listTransferConfigs();
-  // [END bigquerydatatransfer_v1_generated_DataTransferService_ListTransferConfigs_async]
+  listTransferLogs();
+  // [END bigquerydatatransfer_v1_generated_DataTransferService_ListTransferLogs_async]
 }
 
 process.on('unhandledRejection', err => {

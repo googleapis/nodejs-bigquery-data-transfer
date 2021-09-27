@@ -12,52 +12,47 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(parent, startTime, endTime) {
-  // [START bigquerydatatransfer_v1_generated_DataTransferService_ScheduleTransferRuns_async]
+function main() {
+  // [START bigquerydatatransfer_v1_generated_DataTransferService_StartManualTransferRuns_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. Transfer configuration name in the form:
+   *  Transfer configuration name in the form:
    *  `projects/{project_id}/transferConfigs/{config_id}` or
    *  `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
    */
   // const parent = 'abc123'
   /**
-   *  Required. Start time of the range of transfer runs. For example,
-   *  `"2017-05-25T00:00:00+00:00"`.
+   *  Time range for the transfer runs that should be started.
    */
-  // const startTime = ''
+  // const requestedTimeRange = ''
   /**
-   *  Required. End time of the range of transfer runs. For example,
-   *  `"2017-05-30T00:00:00+00:00"`.
+   *  Specific run_time for a transfer run to be started. The
+   *  requested_run_time must not be in the future.
    */
-  // const endTime = ''
+  // const requestedRunTime = ''
 
   // Imports the Datatransfer library
-  const {DataTransferServiceClient} = require('@google-cloud/bigquery-data-transfer').v1;
+  const {DataTransferServiceClient} =
+    require('@google-cloud/bigquery-data-transfer').v1;
 
   // Instantiates a client
   const datatransferClient = new DataTransferServiceClient();
 
-  async function scheduleTransferRuns() {
+  async function startManualTransferRuns() {
     // Construct request
-    const request = {
-      parent,
-      startTime,
-      endTime,
-    };
+    const request = {};
 
     // Run request
-    const response = await datatransferClient.scheduleTransferRuns(request);
+    const response = await datatransferClient.startManualTransferRuns(request);
     console.log(response);
   }
 
-  scheduleTransferRuns();
-  // [END bigquerydatatransfer_v1_generated_DataTransferService_ScheduleTransferRuns_async]
+  startManualTransferRuns();
+  // [END bigquerydatatransfer_v1_generated_DataTransferService_StartManualTransferRuns_async]
 }
 
 process.on('unhandledRejection', err => {
