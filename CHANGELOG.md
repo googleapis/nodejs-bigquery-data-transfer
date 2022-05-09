@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/bigquery-data-transfer?activeTab=versions
 
+## [2.4.0](https://github.com/googleapis/nodejs-bigquery-data-transfer/compare/v2.3.0...v2.4.0) (2022-05-09)
+
+
+### Features
+
+* add owner email to TransferConfig message feat: allow customer to enroll a datasource programmatically docs: improvements to various message and field descriptions ([#519](https://github.com/googleapis/nodejs-bigquery-data-transfer/issues/519)) ([028c61c](https://github.com/googleapis/nodejs-bigquery-data-transfer/commit/028c61c8488791371febc583fe2edf077a3a5052))
+
 ## [2.3.0](https://www.github.com/googleapis/nodejs-bigquery-data-transfer/compare/v2.2.7...v2.3.0) (2021-08-23)
 
 
